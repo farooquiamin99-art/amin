@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Saara 💕</title>
+  <title>For [Name] 💕</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* ── floating hearts bg ── */
     .hearts-bg {
       position: fixed; inset: 0; pointer-events: none; z-index: 0;
       overflow: hidden;
@@ -45,17 +44,18 @@
       100% { transform: translateY(-110vh) rotate(10deg); opacity: 0; }
     }
 
-    /* ── page wrapper ── */
+    /* ── pages ── */
     .page {
       position: relative; z-index: 1;
       min-height: 100vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 2.5rem 1.5rem 3rem;
-      gap: 0;
+    }
+    .page.hidden {
+      display: none;
     }
 
-    /* ── top label ── */
     .eyebrow {
       font-family: 'Lato', sans-serif;
       font-weight: 300;
@@ -66,7 +66,6 @@
       margin-bottom: 1.1rem;
     }
 
-    /* ── card ── */
     .card {
       background: #fff;
       border: 1.5px solid var(--blush);
@@ -78,7 +77,6 @@
       text-align: center;
     }
 
-    /* ── giant heart ── */
     .big-heart {
       font-size: 3.8rem;
       line-height: 1;
@@ -90,7 +88,6 @@
       50%      { transform: scale(1.12); }
     }
 
-    /* ── name headline ── */
     h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 6vw, 3rem);
@@ -104,7 +101,6 @@
       color: var(--rose);
     }
 
-    /* ── body text ── */
     .prose {
       font-size: 1.05rem;
       line-height: 1.8;
@@ -114,14 +110,12 @@
     }
     .prose strong { font-weight: 400; color: var(--mauve); }
 
-    /* ── divider ── */
     .divider {
       margin: 1.8rem auto;
       width: 60px; height: 1.5px;
       background: linear-gradient(90deg, transparent, var(--blush), transparent);
     }
 
-    /* ── question ── */
     .question {
       font-family: 'Playfair Display', serif;
       font-size: 1.25rem;
@@ -136,7 +130,6 @@
       font-style: italic;
     }
 
-    /* ── buttons wrapper ── */
     .buttons {
       position: relative;
       display: flex;
@@ -145,7 +138,6 @@
       min-height: 56px;
     }
 
-    /* ── yes button ── */
     .btn-yes {
       padding: 0.75rem 2.2rem;
       border: none;
@@ -165,7 +157,6 @@
       box-shadow: 0 6px 24px rgba(194,87,107,.38);
     }
 
-    /* ── no button ── */
     .btn-no {
       padding: 0.75rem 2.2rem;
       border: 1.5px solid var(--blush);
@@ -179,13 +170,10 @@
       letter-spacing: 0.04em;
       position: absolute;
       transition: left .18s cubic-bezier(.4,1.6,.6,1), top .18s cubic-bezier(.4,1.6,.6,1);
-      /* will be moved by JS */
       left: auto; top: 0;
-      pointer-events: none; /* JS will handle hover detection on the wrapper */
       user-select: none;
     }
 
-    /* ── yes screen ── */
     .yes-screen {
       display: none;
       flex-direction: column;
@@ -197,7 +185,6 @@
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .yes-screen .big-heart { font-size: 5rem; }
     .yes-screen h2 {
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
@@ -209,7 +196,6 @@
       font-weight: 300;
     }
 
-    /* ── footer ── */
     .footer {
       margin-top: 2.2rem;
       font-size: 0.72rem;
@@ -217,45 +203,170 @@
       color: var(--blush);
       text-transform: uppercase;
     }
+
+    /* ── "see more" button ── */
+    .btn-more {
+      margin-top: 1.8rem;
+      padding: 0.65rem 1.8rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-more:hover {
+      background: var(--blush);
+      color: var(--mauve);
+      border-color: var(--rose);
+    }
+
+    /* ── coming soon page ── */
+    .coming-soon-card {
+      background: #fff;
+      border: 1.5px solid var(--blush);
+      border-radius: 2rem;
+      padding: 3.5rem 2.8rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 8px 40px rgba(232,120,138,.13);
+      text-align: center;
+      animation: fadeIn .5s ease;
+    }
+
+    .cs-icon {
+      font-size: 3.5rem;
+      display: inline-block;
+      animation: spin 6s linear infinite;
+    }
+    @keyframes spin {
+      0%   { transform: rotate(0deg)   scale(1); }
+      50%  { transform: rotate(180deg) scale(1.1); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    .cs-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--mauve);
+      margin: 1rem 0 0.4rem;
+    }
+    .cs-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .cs-sub {
+      font-size: 0.95rem;
+      color: var(--soft);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-top: 0.8rem;
+    }
+
+    .cs-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.8rem 0 0.5rem;
+    }
+    .cs-dots span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--blush);
+      animation: dotPulse 1.4s ease-in-out infinite;
+    }
+    .cs-dots span:nth-child(2) { animation-delay: .2s; }
+    .cs-dots span:nth-child(3) { animation-delay: .4s; }
+    @keyframes dotPulse {
+      0%,100% { background: var(--blush); transform: scale(1); }
+      50%      { background: var(--rose);  transform: scale(1.35); }
+    }
+
+    /* ── back button ── */
+    .btn-back {
+      margin-top: 2rem;
+      padding: 0.6rem 1.6rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--soft);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .btn-back:hover {
+      background: var(--petal);
+      color: var(--mauve);
+    }
   </style>
 </head>
 <body>
 
-<!-- floating hearts -->
 <div class="hearts-bg" id="heartsBg"></div>
 
-<div class="page">
-  <p class="eyebrow">See i have created something, just for you</p>
+<!-- ── PAGE 1: main love page ── -->
+<div class="page" id="page1">
+  <p class="eyebrow"><!-- small top label --></p>
 
   <div class="card" id="mainCard">
     <span class="big-heart">💕</span>
 
-    <h1>My dearest <em>Saara</em></h1>
+    <h1>My dearest <em>[Name]</em></h1>
 
     <p class="prose">
-      i was trying to create something and mujhe kuch samjh nhi raha tha<br>
-      toh i gave myself a task just for you<br><br>
-      i just want to express my feeling here which is <strong>extraordinary</strong>,<br>
-      i love you so much saara and i have build this site just for you to know how much i love you<br><br>
-      i can not say much but maine tere liye ek chota sa corner bana diya internet pe<br>
-      thank you so much for giving me this much love and ofcouse choosing me, always be greatful<br><br>
-      <strong>I love you. Completely. Always.</strong>
+      [Your message to her goes here.]<br><br>
+      [More lines if you want.]<br><br>
+      <strong>[A closing line — something bold and sweet.]</strong>
     </p>
 
     <div class="divider"></div>
 
-    <p class="question">Do you love me back? 🥺</p>
-    <p class="dare">( I dare you to click No — you can't. )</p>
+    <p class="question">[Do you love me back? 🥺]</p>
+    <p class="dare">( [I dare you to click No — you can't.] )</p>
 
     <div class="buttons" id="btnWrapper">
-      <button class="btn-yes" id="btnYes">Yes, always 💖</button>
+      <button class="btn-yes" id="btnYes">[Yes, always 💖]</button>
       <button class="btn-no"  id="btnNo">No</button>
     </div>
   </div>
 
-    <a class="btn-more" href="memories.html">✨ click here to see more stuff</a>
+  <!-- "see more" button sits below the card -->
+  <button class="btn-more" id="btnMore">✨ click here to see more stuff</button>
 
-  <p class="footer">made with love &nbsp;·&nbsp; just for saara</p>
+  <p class="footer"><!-- e.g. "made with love · just for [name]" --></p>
+</div>
+
+
+<!-- ── PAGE 2: coming soon ── -->
+<div class="page hidden" id="page2">
+  <div class="coming-soon-card">
+    <span class="cs-icon">📸</span>
+
+    <h2 class="cs-title"><em>Coming</em> Soon</h2>
+
+    <p class="cs-sub">
+      Our memories are being gathered,<br>
+      every photo, every moment, every smile —<br>
+      all for you. Check back soon. 🌸
+    </p>
+
+    <div class="cs-dots">
+      <span></span><span></span><span></span>
+    </div>
+
+    <button class="btn-back" id="btnBack">← go back</button>
+  </div>
 </div>
 
 
@@ -280,21 +391,17 @@
   const btnYes  = document.getElementById('btnYes');
   const card    = document.getElementById('mainCard');
 
-  // position No button initially right of Yes
   function initNoPos() {
     const yr = btnYes.getBoundingClientRect();
     const wr = wrapper.getBoundingClientRect();
     btnNo.style.position = 'absolute';
     btnNo.style.top  = '0px';
     btnNo.style.left = (yr.right - wr.left + 14) + 'px';
-    btnNo.style.pointerEvents = 'auto'; // allow mouseover detection
   }
   window.addEventListener('load', initNoPos);
   window.addEventListener('resize', initNoPos);
 
-  // escape radius — start fleeing when cursor is this close (px)
   const FLEE_RADIUS = 90;
-
   document.addEventListener('mousemove', (e) => {
     const nr = btnNo.getBoundingClientRect();
     const cx = nr.left + nr.width  / 2;
@@ -302,41 +409,50 @@
     const dx = e.clientX - cx;
     const dy = e.clientY - cy;
     const dist = Math.sqrt(dx*dx + dy*dy);
-
     if (dist < FLEE_RADIUS) {
-      // card bounds (No must stay inside)
       const cr  = card.getBoundingClientRect();
       const wr  = wrapper.getBoundingClientRect();
-
-      // push away from cursor
-      const angle = Math.atan2(dy, dx) + Math.PI; // opposite direction
+      const angle = Math.atan2(dy, dx) + Math.PI;
       const push  = FLEE_RADIUS * 1.6;
       let newX = (cx - cr.left) + Math.cos(angle) * push;
       let newY = (cy - wr.top)  + Math.sin(angle) * push;
-
-      // clamp inside card width
       const btnW = nr.width;
       const maxX = cr.width  - btnW - 10;
       const maxY = cr.height - nr.height - 10;
       newX = Math.max(10, Math.min(maxX, newX - btnW/2));
       newY = Math.max(-60, Math.min(maxY - 30, newY - nr.height/2));
-
       btnNo.style.left = newX + 'px';
       btnNo.style.top  = newY + 'px';
     }
   });
 
-  // Yes click → show love screen
+  /* ── Yes click ── */
   btnYes.addEventListener('click', () => {
-    const inner = card.querySelector(':not(.yes-screen)');
-    // replace card contents
     card.innerHTML = `
       <div class="yes-screen" style="display:flex;">
         <span class="big-heart" style="animation:pulse 1.2s ease-in-out infinite; display:inline-block; font-size:4.5rem;">💖</span>
-        <h2>She said YES! 🎉</h2>
-        <p>Of course she did. She always does. 🥰</p>
-        <p style="margin-top:.4rem;">I love you so much, Saara.&nbsp; Always and forever.</p>
+        <h2>[Your celebration heading here!]</h2>
+        <p>[First line of your celebration message.]</p>
+        <p style="margin-top:.4rem;">[Second line — something sweet to end on.]</p>
       </div>`;
+  });
+
+  /* ── page switching ── */
+  const page1  = document.getElementById('page1');
+  const page2  = document.getElementById('page2');
+  const btnMore = document.getElementById('btnMore');
+  const btnBack = document.getElementById('btnBack');
+
+  btnMore.addEventListener('click', () => {
+    page1.classList.add('hidden');
+    page2.classList.remove('hidden');
+    window.scrollTo(0, 0);
+  });
+
+  btnBack.addEventListener('click', () => {
+    page2.classList.add('hidden');
+    page1.classList.remove('hidden');
+    window.scrollTo(0, 0);
   });
 </script>
 </body>
